@@ -51,7 +51,7 @@ int send_uart(USART_TypeDef* u, char* msg, int len) {
 
         while(!(u->ISR & (1 << 7))) {
             timeout_counter++;
-            if(timeout_counter >= SEND_TIMEOUT) {
+            if(timeout_counter >= CONFIG_SEND_TIMEOUT) {
                 return 1;
             }
         }
