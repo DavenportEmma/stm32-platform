@@ -4,6 +4,19 @@ config UART
     bool "UART"
     default n
 
+menu "UART Options"
+depends on UART
+
+    config SEND_TIMEOUT
+    int "UART send timeout (ms)"
+    default 10000
+
+    config STLINK_UART
+    int "ST-LINK UART"
+    default 3
+
+endmenu
+
 config MIDI
     bool "MIDI"
     default n
