@@ -2,9 +2,14 @@
 #define _UART_H
 
 #include "stm32f722xx.h"
+#include "autoconf.h"
 
 #ifndef MAX_PRINT_LENGTH
 #define MAX_PRINT_LENGTH 64
+#endif
+
+#if CONFIG_STLINK_UART == 3
+#define STLINK_UART USART3
 #endif
 
 typedef struct {
@@ -20,7 +25,5 @@ typedef struct {
 int init_uart(USART_Handler* u);
 
 int send_uart(USART_TypeDef* u, char* msg, int len);
-
-int print(char *msg);
 
 #endif // _UART_H
