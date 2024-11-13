@@ -61,26 +61,6 @@ int send_uart(USART_TypeDef* u, char* msg, int len) {
     return 0;
 }
 
-int print(char *msg) {
-    for(int i = 0; i < MAX_PRINT_LENGTH; i++) {
-        if(msg[i] == '\0') {
-            return 0;
-        }
-
-        uint32_t timeout_counter = 0;
-
-        while(!(PRINT_UART->ISR & (1 << 7))) {
-            timeout_counter++;
-            if(timeout_counter >= SEND_TIMEOUT) {
-                return 1;
-            }
-        }
-        PRINT_UART->TDR = msg[i];
-    }
-
-    return 0;
-}
-
 int getchar() {
     while(!(STLINK_UART->ISR & USART_ISR_RXNE)) {}
     STLINK_UART->RQR |= USART_RQR_RXFRQ;  // Example: Request a flush of the RX buffer (clears RXNE flag)
