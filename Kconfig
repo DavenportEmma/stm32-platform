@@ -11,10 +11,6 @@ depends on UART
     int "UART send timeout (ms)"
     default 10000
 
-    config STLINK_UART
-    int "ST-LINK UART"
-    default 3
-
 endmenu
 
 config MIDI
