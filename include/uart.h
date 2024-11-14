@@ -7,11 +7,6 @@
 #ifndef MAX_PRINT_LENGTH
 #define MAX_PRINT_LENGTH 64
 #endif
-
-#if CONFIG_STLINK_UART == 3
-#define STLINK_UART USART3
-#endif
-
 typedef struct {
     USART_TypeDef* uart;
     int baud;
