@@ -66,8 +66,7 @@ uint8_t circular_buf_get(cbuf_handle_t b, uint8_t* data) {
 	return r;
 }
 
-int8_t circular_buf_empty(cbuf_handle_t b)
-{
+int8_t circular_buf_empty(cbuf_handle_t b) {
 	return (!circular_buf_full(b) && (b->head == b->tail));
 }
 
@@ -88,7 +87,6 @@ uint8_t circular_buf_size(cbuf_handle_t b) {
 		{
 			size = (b->max + b->head - b->tail);
 		}
-
 	}
 
 	return size;

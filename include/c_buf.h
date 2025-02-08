@@ -21,7 +21,9 @@ void circular_buf_put(cbuf_handle_t b, uint8_t data);
 
 uint8_t circular_buf_get(cbuf_handle_t b, uint8_t* data);
 
-int8_t circular_buf_empty(cbuf_handle_t me);
+int8_t circular_buf_empty(cbuf_handle_t b);
+
+int8_t circular_buf_full(cbuf_handle_t b);
 
 uint8_t circular_buf_size(cbuf_handle_t b);
 
