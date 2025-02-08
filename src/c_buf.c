@@ -71,7 +71,25 @@ int8_t circular_buf_empty(cbuf_handle_t b)
 	return (!circular_buf_full(b) && (b->head == b->tail));
 }
 
-int8_t circular_buf_full(cbuf_handle_t b)
-{
+int8_t circular_buf_full(cbuf_handle_t b) {
 	return b->full;
+}
+
+uint8_t circular_buf_size(cbuf_handle_t b) {
+	uint8_t size = b->max;
+
+	if(!circular_buf_full(b))
+	{
+		if(b->head >= b->tail)
+		{
+			size = (b->head - b->tail);
+		}
+		else
+		{
+			size = (b->max + b->head - b->tail);
+		}
+
+	}
+
+	return size;
 }
