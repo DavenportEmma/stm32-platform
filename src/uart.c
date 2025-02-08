@@ -66,3 +66,15 @@ int getchar(USART_TypeDef* u) {
     u->RQR |= USART_RQR_RXFRQ;  // Example: Request a flush of the RX buffer (clears RXNE flag)
     return u->RDR - '0';
 }
+
+int send_hex(USART_TypeDef* u, uint8_t value) {
+    char hexString[] = "0x00";
+
+    char hexChars[] = "0123456789ABCDEF";
+    hexString[2] = hexChars[(value >> 4) & 0x0F];
+    hexString[3] = hexChars[value & 0x0F];
+
+    for(int i = 0; i < 4; i++) {
+        send_uart(u, hexString, 4);
+    }
+}
