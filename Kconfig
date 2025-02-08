@@ -62,4 +62,30 @@ config W25Q128JV
     bool "W25Q128JV"
     default n
 
+config KEYBOARD
+    depends on UART
+    bool "keyboard"
+    default n
+
+menu "Keyboard Options"
+depends on KEYBOARD
+
+    config ROWS
+    int "number of rows"
+    default 8
+
+    config COLUMNS
+    int "number of columns"
+    default 16
+
+    config KEY_SCAN_MS
+    int "key scan period (ms)"
+    default 10
+
+    config ROLLOVER
+    int "max key rollover"
+    default 2
+
+endmenu # Keyboard Options
+
 endmenu # Drivers
