@@ -27,4 +27,6 @@ int8_t circular_buf_full(cbuf_handle_t b);
 
 uint8_t circular_buf_size(cbuf_handle_t b);
 
+int8_t circular_buf_index_of(cbuf_handle_t b, uint8_t value);
+
 #endif // _C_BUF_H
