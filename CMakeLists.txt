@@ -82,6 +82,6 @@ endif()
 if(${CONFIG_KEYBOARD})
     list(APPEND DRIVER_SRC
         ${WORKSPACE_BASE}/platform/src/keyboard.c
-        ${WORKSPACE_BASE}/platform/src/c_buf.c
+        ${WORKSPACE_BASE}/platform/src/k_buf.c
     )
 endif()
