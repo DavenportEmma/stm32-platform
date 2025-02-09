@@ -1,6 +1,6 @@
 #include "keyboard.h"
 #include "autoconf.h"
-#include "c_buf.h"
+#include "k_buf.h"
 
 void clear() {
     GPIOD->ODR &= ~CLR;
@@ -14,29 +14,46 @@ void loadBit(int b) {
     GPIOD->ODR &= ~CLK;
 }
 
-void readCol(int colIndex, cbuf_handle_t cbuf) {
+void readCol(int colIndex, kbuf_handle_t kbuf) {
+    static uint16_t prevState[CONFIG_COLUMNS] = {0};
+
     // read gpioc input register
     int d = GPIOC->IDR;
-    uint8_t keyVal = 0;
+    uint8_t currentKeyState = 0;
+    uint8_t keyVal;
+    uint8_t prevKeyState;
+
     // iterate over each row
     for(int i = 0; i < CONFIG_ROWS; i++) {
         // get key value by masking the associated pin and shifting it right
-        keyVal = (d >> ROW_LUT[i]) & 1;
+        currentKeyState = (d >> ROW_LUT[i]) & 1;
+        prevKeyState = (prevState[colIndex] >> ROW_LUT[i]) & 1;
 
-        if(keyVal) {
-            circular_buf_put(cbuf, keyMap[colIndex+i*16]);
+        // if the key is pressed
+        if(currentKeyState) {
+            keyVal = keyMap[colIndex+i*16];
+            // if it's a new key press
+            if(currentKeyState != prevKeyState) {
+                kbuf_push(kbuf, keyVal);
+                kbuf->ready = 1;
+            // if it's a key hold
+            } else {
+                kbuf_push(kbuf, keyVal);
+            }
         }
     }
+
+    prevState[colIndex] = d;
 }
 
-void scan(cbuf_handle_t cbuf) {
+void scan(kbuf_handle_t kbuf) {
     // load a bit into the shift register
     loadBit(1);
-    readCol(0, cbuf);
+    readCol(0, kbuf);
     
     for(int i = 1; i < CONFIG_COLUMNS; i++) {
         loadBit(0);
-        readCol(i, cbuf);
+        readCol(i, kbuf);
     }
 
     clear();
