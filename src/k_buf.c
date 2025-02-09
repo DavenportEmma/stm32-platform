@@ -2,7 +2,8 @@
 #include "k_buf.h"
 
 static void advance_head_pointer(kbuf_handle_t k) {
-    if(++k->head == k->max-1) {
+    k->head++;
+    if(k->head >= k->max) {
         k->head = k->max-1;
         k->full = 1;
     }
