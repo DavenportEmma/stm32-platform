@@ -32,7 +32,7 @@ int init_spi(SPI_Handler* s) {
     spi->CR1 |= SPI_CR1_MSTR;
     spi->CR1 |= SPI_CR1_SSM;
     spi->CR1 |= SPI_CR1_SSI;
-    spi->CR1 |= SPI_CR1_BR_0 | SPI_CR1_BR_1 | SPI_CR1_BR_2;
+    // spi->CR1 |= SPI_CR1_BR_0 | SPI_CR1_BR_1 | SPI_CR1_BR_2;
     spi->CR2 |= SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0; // 8-bit data size
     spi->CR2 |= SPI_CR2_FRXTH;
     spi->CR1 |= SPI_CR1_SPE;
