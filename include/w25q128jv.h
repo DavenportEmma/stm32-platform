@@ -1,6 +1,12 @@
 #ifndef _W25Q128JV_H
 #define _W25Q128JV_H
 
+typedef enum {
+    PROGRAM_PAGE = 0x02,
+    READ_DATA = 0x03,
+    WRITE_ENABLE = 0x06,
+} W25Q128JV_CMD;
+
 /*
 the flash chip is broken into 64k pages, 256 bytes wide
 ---------------------------------
