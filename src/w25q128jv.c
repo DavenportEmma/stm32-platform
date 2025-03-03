@@ -14,6 +14,17 @@ static void compileHeader(uint8_t command, uint32_t addr, uint8_t* header) {
     header[3] = addrB0;
 }
 
+static uint8_t busy(void) {
+    uint8_t data[] = {READ_STATUS_1, 0x00};
+    CS_low(GPIOA, 4);
+
+    SPI_tx_rx(SPI1, data, data, 2);
+
+    CS_high(GPIOA, 4);
+
+    return (data[1] & 0x01);
+}
+
 static void sendHeader(uint32_t addr, W25Q128JV_CMD c) {
     uint8_t header[4];
     compileHeader(c, addr, header);
