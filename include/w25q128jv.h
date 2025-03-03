@@ -53,7 +53,9 @@ note off bytes should always come before note on bytes
 */
 
 void writeEnable();
-void programPage(uint32_t addr, uint8_t data[], uint8_t len);
-void SPIRead(uint32_t addr, uint8_t data[], uint8_t len);
+void eraseSector(uint32_t addr);
+void eraseBlock(uint32_t addr);
+void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
+void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
 
 #endif // _W25Q128JV_H
