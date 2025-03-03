@@ -4,9 +4,9 @@
 #include "w25q128jv.h"
 
 static void compileHeader(uint8_t command, uint32_t addr, uint8_t* header) {
-    uint8_t addrB0 = addr && 0xFF;
-    uint8_t addrB1 = (addr >> 8) && 0xFF;
-    uint8_t addrB2 = (addr >> 16) && 0xFF;
+    uint8_t addrB0 = addr & 0xFF;
+    uint8_t addrB1 = (addr >> 8) & 0xFF;
+    uint8_t addrB2 = (addr >> 16) & 0xFF;
 
     header[0] = command;
     header[1] = addrB2;
