@@ -35,7 +35,6 @@ void kbuf_free(kbuf_handle_t k) {
 void kbuf_reset(kbuf_handle_t k) {
     k->head = -1;
     k->full = 0;
-    k->ready = 0;
 }
 
 int8_t kbuf_full(kbuf_handle_t k) {
@@ -48,10 +47,6 @@ int8_t kbuf_empty(kbuf_handle_t k) {
     } else {
         return 1;
     }
-}
-
-int8_t kbuf_ready(kbuf_handle_t k) {
-    return k->ready;
 }
 
 int8_t kbuf_size(kbuf_handle_t k) {
