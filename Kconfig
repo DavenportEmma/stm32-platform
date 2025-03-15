@@ -100,6 +100,10 @@ config PPQN
     int "PPQN"
     default 96
 
+config TOTAL_SEQUENCES
+    int "total sequences available"
+    default 64
+
 config MAX_SEQUENCES
     int "max number of concurrent sequences"
     default 16
