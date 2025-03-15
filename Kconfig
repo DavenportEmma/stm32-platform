@@ -120,7 +120,7 @@ menu "Flash Memory Configuration"
 
 config SEQ_ADDR_OFFSET
     int "the distance in pages between the start of sequences in memory"
-    default 0x4000
+    default 0x10000
 
 endmenu # Flash Memory Configuration
 
