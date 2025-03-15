@@ -149,7 +149,7 @@ typedef struct {
 
 typedef struct {
     uint8_t id;
-    uint8_t counter;
+    uint16_t counter;
     MIDIChannel_t channel;
     uint8_t enabled;
 } MIDISequence_t;
