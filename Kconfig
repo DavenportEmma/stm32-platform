@@ -108,6 +108,10 @@ config PACKET_BUFFER_LENGTH
     int "length of the midi packet buffer"
     default 8
 
+config MAX_POLYPHONY
+    int "max number of polyphonic voices per sequence"
+    default 4
+
 menu "Flash Memory Configuration"
 
 config SEQ_ADDR_OFFSET
