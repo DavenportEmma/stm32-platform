@@ -3,6 +3,9 @@
 
 #include "stm32f722xx.h"
 
+#define STEP_END 0x00
+#define SEQ_END 0xFF
+
 typedef enum {
     NOTE_OFF    = 0x80,
     NOTE_ON     = 0x90,
