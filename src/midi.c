@@ -27,13 +27,13 @@ int send_midi_control(
 }
 
 void all_channels_off(USART_TypeDef* u) {
-    MIDICC_t* cc;
+    MIDICC_t cc;
     
     for(uint8_t i = 0; i < 16; i++) {
-        cc->channel = i;
-        cc->status = CONTROLLER;
-        cc->control = ALL_NOTES_OFF;
-        cc->value = 0;
-        send_midi_control(u, cc);
+        cc.channel = i;
+        cc.status = CONTROLLER;
+        cc.control = ALL_NOTES_OFF;
+        cc.value = 0;
+        send_midi_control(u, &cc);
     }
 }
