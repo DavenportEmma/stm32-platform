@@ -19,6 +19,7 @@ static void retreat_head_pointer(kbuf_handle_t k) {
 
 kbuf_handle_t kbuf_init(uint8_t* buffer, uint8_t size) {
     kbuf_handle_t kbuf = pvPortMalloc(sizeof(k_buf_t));
+    if (!kbuf) return NULL;
 
     kbuf->buffer = buffer;
     kbuf->max = size;
