@@ -2,6 +2,7 @@
 #include "spi.h"
 #include "uart.h"
 #include "w25q128jv.h"
+#include "common.h"
 
 static void compileHeader(uint8_t command, uint32_t addr, uint8_t* header) {
     uint8_t addrB0 = addr & 0xFF;
@@ -100,41 +101,4 @@ void writeEnable() {
     uint8_t rx[1];
     SPI_tx_rx(SPI1, tx, rx, 1);
     CS_high(GPIOA, 4);
-}
-
-// pass -1 to num_steps to read the entire sequence of steps
-int8_t readSteps(uint32_t addr, uint8_t* data, int8_t num_steps, int16_t max) {
-    while(busy()) {}
-
-    CS_low(GPIOA, 4);
-    
-    sendHeader(addr, READ_DATA);
-
-    int8_t num_bytes = 0;
-    int8_t step_count = 0;
-
-    for(num_bytes = 0; num_bytes < max; num_bytes++) {
-        uint8_t d;
-        SPI_tx_rx(SPI1, &d, &d, 1);
-
-        data[num_bytes] = d;
-
-        if(d == 0x00 || d == 0xFF) {
-            step_count++;
-        }
-
-        if(num_steps == -1) {
-            if(d == 0xFF) {
-                break;
-            }
-        } else {
-            if(step_count >= num_steps && (d == 0x00 || d == 0xFF)) {
-                break;
-            }
-        }
-    }
-
-    CS_high(GPIOA, 4);
-
-    return num_bytes;
 }

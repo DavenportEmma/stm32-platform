@@ -59,6 +59,5 @@ void eraseBlock(uint32_t addr);
 void eraseChip();
 void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
 void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
-int8_t readSteps(uint32_t addr, uint8_t* data, int8_t num_steps, int16_t max);
 
 #endif // _W25Q128JV_H
