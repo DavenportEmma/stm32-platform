@@ -89,3 +89,19 @@ depends on KEYBOARD
 endmenu # Keyboard Options
 
 endmenu # Drivers
+
+menu "Sequencer Options"
+
+config TEMPO
+    int "default tempo"
+    default 140
+
+config PPQN
+    int "PPQN"
+    default 96
+
+config MAX_SEQUENCES
+    int "max number of concurrent sequences"
+    default 16
+
+endmenu # Sequencer Options
