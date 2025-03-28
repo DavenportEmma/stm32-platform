@@ -27,7 +27,7 @@ static uint8_t busy(void) {
 
 static void sendHeader(uint32_t addr, W25Q128JV_CMD c) {
     uint8_t header[4];
-    int8_t rx[4];
+    uint8_t rx[4];
     compileHeader(c, addr, header);
 
     SPI_tx_rx(SPI1, header, rx, 4);
