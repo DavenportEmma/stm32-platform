@@ -148,7 +148,6 @@ typedef struct {
 } MIDICC_t;
 
 typedef struct {
-    uint8_t id;
     uint16_t counter;
     MIDIChannel_t channel;
     uint8_t enabled;
