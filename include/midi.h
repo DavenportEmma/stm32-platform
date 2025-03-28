@@ -9,7 +9,7 @@ typedef enum {
     CONTROLLER = 0xB0,
     USART_START_BYTE = 0xF4,
     USART_END_BYTE = 0xF5
-} MIDIStatus_TypeDef;
+} MIDIStatus_t;
 
 typedef enum {
     CHANNEL_1   = 0x00,
@@ -28,7 +28,7 @@ typedef enum {
     CHANNEL_14  = 0x0D,
     CHANNEL_15  = 0x0E,
     CHANNEL_16  = 0x0F
-} MIDIChannel_TypeDef;
+} MIDIChannel_t;
 
 typedef enum {
     C8      = 0x6C,
@@ -119,56 +119,46 @@ typedef enum {
     B0      = 0x17,
     ASHARP0 = 0x16,
     A0      = 0x15
-} MIDINote_TypeDef;
+} MIDINote_t;
 
 typedef enum {
     ALL_NOTES_OFF  = 0X7B
-} MIDIControl_TypeDef;
+} MIDIControl_t;
 
 typedef enum {
     NO_ERROR            = 0x00,
     SEND_ERR_TIMEOUT    = 0x01
-} MIDIError_TypeDef;
+} MIDIError_t;
 
 typedef struct {
-    MIDIStatus_TypeDef status;
-    MIDIChannel_TypeDef channel;
-    MIDINote_TypeDef note;
+    MIDIStatus_t status;
+    MIDIChannel_t channel;
+    MIDINote_t note;
     char velocity;
-} MIDIPacket_TypeDef;
+} MIDIPacket_t;
 
 typedef struct {
-    MIDIStatus_TypeDef status;
-    MIDIChannel_TypeDef channel;
-    MIDIControl_TypeDef control;
+    MIDIStatus_t status;
+    MIDIChannel_t channel;
+    MIDIControl_t control;
     char value;
-} MIDICC_TypeDef;
-
-typedef struct {
-    MIDIStatus_TypeDef status;
-    MIDINote_TypeDef note;
-    char velocity;
-    char glide;
-    char end_of_sequence;
-} MIDIStep_TypeDef;
+} MIDICC_t;
 
 typedef struct {
     uint8_t id;
-    uint8_t prescaler;
     uint8_t counter;
-    uint8_t num_steps;
-    MIDIChannel_TypeDef channel;
-    MIDIStep_TypeDef* steps;
-} MIDISequence_TypeDef;
+    MIDIChannel_t channel;
+    uint8_t enabled;
+} MIDISequence_t;
 
 int send_midi_note(
     USART_TypeDef* u,
-    MIDIPacket_TypeDef* p
+    MIDIPacket_t* p
 );
 
 int send_midi_control(
     USART_TypeDef* u,
-    MIDICC_TypeDef* p
+    MIDICC_t* p
 );
 
 void all_channels_off(USART_TypeDef* u);
