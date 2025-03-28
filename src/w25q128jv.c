@@ -27,8 +27,34 @@ static uint8_t busy(void) {
 
 static void sendHeader(uint32_t addr, W25Q128JV_CMD c) {
     uint8_t header[4];
+    int8_t rx[4];
     compileHeader(c, addr, header);
-    SPI_tx_rx(SPI1, header, 4);
+
+    SPI_tx_rx(SPI1, header, rx, 4);
+}
+
+void eraseSector(uint32_t addr) {
+    while(busy()) {}
+    writeEnable();
+
+    CS_low(GPIOA, 4);
+
+    sendHeader(addr, SECTOR_ERASE);
+
+    CS_high(GPIOA, 4);
+
+}
+
+void eraseBlock(uint32_t addr) {
+    while(busy()) {}
+    writeEnable();
+
+    CS_low(GPIOA, 4);
+
+    sendHeader(addr, BLOCK_ERASE_64KB);
+
+    CS_high(GPIOA, 4);
+
 }
 
 void programPage(uint32_t addr, uint8_t data[], uint8_t len) {
