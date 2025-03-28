@@ -4,7 +4,7 @@
 
 int send_midi_note(
     USART_TypeDef* u,
-    MIDIPacket_TypeDef* p
+    MIDIPacket_t* p
 ) {
     char buffer[3];
     buffer[0] = p->status | p->channel;
@@ -16,7 +16,7 @@ int send_midi_note(
 
 int send_midi_control(
     USART_TypeDef* u,
-    MIDICC_TypeDef* p
+    MIDICC_t* p
 ) {
     char buffer[3];
     buffer[0] = p->status | p->channel;
@@ -27,7 +27,7 @@ int send_midi_control(
 }
 
 void all_channels_off(USART_TypeDef* u) {
-    MIDICC_TypeDef* cc;
+    MIDICC_t* cc;
     
     for(uint8_t i = 0; i < 16; i++) {
         cc->channel = i;
