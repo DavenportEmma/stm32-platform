@@ -123,11 +123,14 @@ int8_t readSteps(uint32_t addr, uint8_t* data, int8_t num_steps, int16_t max) {
             step_count++;
         }
 
-        if( (d == 0xFF && num_steps == -1) ||
-            (d == 0x00 && step_count >= num_steps) ||
-            (d == 0xFF && step_count >= num_steps)
-        ) {
-            break;
+        if(num_steps == -1) {
+            if(d == 0xFF) {
+                break;
+            }
+        } else {
+            if(step_count >= num_steps && (d == 0x00 || d == 0xFF)) {
+                break;
+            }
         }
     }
 
