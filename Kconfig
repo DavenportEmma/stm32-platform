@@ -28,15 +28,3 @@ config W25Q128JV
     default n
 
 endmenu # Drivers
-
-menu "Sequencer Options"
-
-config GLOBAL_TEMPO
-    int "global tempo"
-    default 140
-
-config PPQN
-    int "PPQN"
-    default 96
-
-endmenu # Sequencer Options
