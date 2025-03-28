@@ -75,4 +75,6 @@ int send_hex(USART_TypeDef* u, uint8_t value) {
     hexString[3] = hexChars[value & 0x0F];
 
     send_uart(u, hexString, 4);
+
+    return 0;
 }
