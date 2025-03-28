@@ -104,4 +104,16 @@ config MAX_SEQUENCES
     int "max number of concurrent sequences"
     default 16
 
+config PACKET_BUFFER_LENGTH
+    int "length of the midi packet buffer"
+    default 8
+
+menu "Flash Memory Configuration"
+
+config SEQ_ADDR_OFFSET
+    int "the distance in pages between the start of sequences in memory"
+    default 0x4000
+
+endmenu # Flash Memory Configuration
+
 endmenu # Sequencer Options
