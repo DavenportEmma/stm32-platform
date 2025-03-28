@@ -8,6 +8,7 @@ typedef enum {
     WRITE_ENABLE    = 0x06,
     SECTOR_ERASE    = 0x20,
     BLOCK_ERASE_64KB = 0xD8,
+    CHIP_ERASE      = 0x60,
 } W25Q128JV_CMD;
 
 /*
@@ -55,6 +56,7 @@ note off bytes should always come before note on bytes
 void writeEnable();
 void eraseSector(uint32_t addr);
 void eraseBlock(uint32_t addr);
+void eraseChip();
 void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
 void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
 

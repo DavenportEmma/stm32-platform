@@ -57,6 +57,18 @@ void eraseBlock(uint32_t addr) {
 
 }
 
+void eraseChip() {
+    while(busy()) {}
+    writeEnable();
+
+    CS_low(GPIOA, 4);
+
+    uint8_t data[1] = {CHIP_ERASE};
+    SPI_tx_rx(SPI1, data, data, 1);
+    
+    CS_high(GPIOA, 4);
+}
+
 void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx,  uint8_t len) {
     while(busy()) {}
     
