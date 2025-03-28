@@ -21,4 +21,6 @@ int init_uart(USART_Handler* u);
 
 int send_uart(USART_TypeDef* u, char* msg, int len);
 
+int send_hex(USART_TypeDef* u, uint8_t value);
+
 #endif // _UART_H
