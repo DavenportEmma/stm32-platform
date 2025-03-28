@@ -22,4 +22,8 @@ config SPI
     bool "SPI"
     default n
 
-endmenu
+config W25Q128JV
+    depends on SPI
+    bool "W25Q128JV"
+    default n
+
