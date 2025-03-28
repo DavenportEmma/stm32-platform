@@ -1,6 +1,6 @@
 #include "stm32f722xx.h"
 #include "uart.h"
-#include "config.h"
+#include "autoconf.h"
 
 int init_uart(USART_Handler* u) {
     #ifndef SYS_CLK
