@@ -17,3 +17,9 @@ if(${CONFIG_SPI})
         ${WORKSPACE_BASE}/platform/src/spi.c
     )
 endif()
+
+if(${CONFIG_W25Q128JV})
+    list(APPEND DRIVER_SRC
+        ${WORKSPACE_BASE}/platform/src/w25q128jv.c
+    )
+endif()
