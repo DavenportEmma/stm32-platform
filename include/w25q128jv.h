@@ -2,9 +2,12 @@
 #define _W25Q128JV_H
 
 typedef enum {
-    PROGRAM_PAGE = 0x02,
-    READ_DATA = 0x03,
-    WRITE_ENABLE = 0x06,
+    PROGRAM_PAGE    = 0x02,
+    READ_DATA       = 0x03,
+    READ_STATUS_1   = 0x05,
+    WRITE_ENABLE    = 0x06,
+    SECTOR_ERASE    = 0x20,
+    BLOCK_ERASE_64KB = 0xD8,
 } W25Q128JV_CMD;
 
 /*
