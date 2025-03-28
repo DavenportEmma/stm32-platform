@@ -91,3 +91,17 @@ uint8_t circular_buf_size(cbuf_handle_t b) {
 
 	return size;
 }
+
+int8_t circular_buf_index_of(cbuf_handle_t b, uint8_t value) {
+	uint8_t size = circular_buf_size(b);
+	
+	uint8_t pos = b->tail;
+	for(int i = 0; i < size; i++) {
+		if(b->buffer[pos] == value) {
+			return pos;
+		}
+		pos = advance_headtail_value(pos, b->max);
+	}
+
+	return -1;
+}
