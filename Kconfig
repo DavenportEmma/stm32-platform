@@ -18,4 +18,8 @@ config MIDI
     default n
     depends on UART
 
+config SPI
+    bool "SPI"
+    default n
+
 endmenu

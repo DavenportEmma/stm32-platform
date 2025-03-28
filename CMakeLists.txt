@@ -11,3 +11,9 @@ if(${CONFIG_MIDI})
         ${WORKSPACE_BASE}/platform/src/midi.c
     )
 endif()
+
+if(${CONFIG_SPI})
+    list(APPEND DRIVER_SRC
+        ${WORKSPACE_BASE}/platform/src/spi.c
+    )
+endif()
