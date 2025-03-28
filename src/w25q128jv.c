@@ -57,24 +57,27 @@ void eraseBlock(uint32_t addr) {
 
 }
 
-void programPage(uint32_t addr, uint8_t data[], uint8_t len) {
+void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx,  uint8_t len) {
+    while(busy()) {}
+    
     writeEnable(); 
 
     CS_low(GPIOA, 4);
-    
+
     sendHeader(addr, PROGRAM_PAGE);
 
-    SPI_tx_rx(SPI1, data, len);
+    SPI_tx_rx(SPI1, tx, rx, len);
 
     CS_high(GPIOA, 4);
 }
 
-void SPIRead(uint32_t addr, uint8_t data[], uint8_t len) {
+void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len) {
+    while(busy()) {}
     CS_low(GPIOA, 4);
 
     sendHeader(addr, READ_DATA);
 
-    SPI_tx_rx(SPI1, data, len);
+    SPI_tx_rx(SPI1, tx, rx, len);
 
     CS_high(GPIOA, 4);
 }
@@ -82,6 +85,7 @@ void SPIRead(uint32_t addr, uint8_t data[], uint8_t len) {
 void writeEnable() {
     CS_low(GPIOA, 4);
     uint8_t tx[] = {WRITE_ENABLE};
-    SPI_tx_rx(SPI1, tx, 1);
+    uint8_t rx[1];
+    SPI_tx_rx(SPI1, tx, rx, 1);
     CS_high(GPIOA, 4);
 }
