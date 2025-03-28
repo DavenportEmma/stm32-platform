@@ -3,7 +3,7 @@
 
 #include "stm32f722xx.h"
 #include "uart.h"
-#include "c_buf.h"
+#include "k_buf.h"
 /*
 shift register control pins
 DIN     PD7 orange
@@ -56,9 +56,9 @@ uint8_t keyMap[CONFIG_ROWS*CONFIG_COLUMNS] = {
     0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A, 0x7B, 0x7C, 0x7D, 0x7E, 0x7F,
 };
 
-void scan(cbuf_handle_t cbuf);
+void scan(kbuf_handle_t kbuf);
 void clear();
 void loadBit(int b);
-void readCol(int index, cbuf_handle_t cbuf);
+void readCol(int index, kbuf_handle_t kbuf);
 
 #endif
