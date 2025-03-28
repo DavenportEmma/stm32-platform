@@ -101,3 +101,28 @@ void writeEnable() {
     SPI_tx_rx(SPI1, tx, rx, 1);
     CS_high(GPIOA, 4);
 }
+
+int8_t readStep(uint32_t addr, uint8_t* data, int8_t max) {
+    while(busy()) {}
+
+    CS_low(GPIOA, 4);
+    
+    sendHeader(addr, READ_DATA);
+
+    int8_t num_bytes = 0;
+
+    for(num_bytes = 0; num_bytes < max; num_bytes++) {
+        uint8_t d;
+        SPI_tx_rx(SPI1, &d, &d, 1);
+
+        data[num_bytes] = d;
+
+        if(d == 0x00 || d == 0xFF) {
+            break;
+        }
+    }
+
+    CS_high(GPIOA, 4);
+
+    return num_bytes;
+}
