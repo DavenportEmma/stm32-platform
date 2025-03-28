@@ -102,7 +102,8 @@ void writeEnable() {
     CS_high(GPIOA, 4);
 }
 
-int8_t readStep(uint32_t addr, uint8_t* data, int8_t max) {
+// pass -1 to num_steps to read the entire sequence of steps
+int8_t readSteps(uint32_t addr, uint8_t* data, int8_t num_steps, int8_t max) {
     while(busy()) {}
 
     CS_low(GPIOA, 4);
@@ -110,6 +111,7 @@ int8_t readStep(uint32_t addr, uint8_t* data, int8_t max) {
     sendHeader(addr, READ_DATA);
 
     int8_t num_bytes = 0;
+    int8_t step_count = 0;
 
     for(num_bytes = 0; num_bytes < max; num_bytes++) {
         uint8_t d;
@@ -118,6 +120,13 @@ int8_t readStep(uint32_t addr, uint8_t* data, int8_t max) {
         data[num_bytes] = d;
 
         if(d == 0x00 || d == 0xFF) {
+            step_count++;
+        }
+
+        if( (d == 0xFF && num_steps == -1) ||
+            (d == 0x00 && step_count >= num_steps) ||
+            (d == 0xFF && step_count >= num_steps)
+        ) {
             break;
         }
     }
