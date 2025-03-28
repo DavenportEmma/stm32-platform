@@ -153,6 +153,7 @@ typedef struct {
 } MIDIStep_TypeDef;
 
 typedef struct {
+    uint8_t id;
     uint8_t prescaler;
     uint8_t counter;
     uint8_t num_steps;
