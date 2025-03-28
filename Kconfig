@@ -11,7 +11,7 @@ depends on UART
     int "UART send timeout (ms)"
     default 10000
 
-endmenu
+endmenu # UART Options
 
 config MIDI
     bool "MIDI"
@@ -27,3 +27,16 @@ config W25Q128JV
     bool "W25Q128JV"
     default n
 
+endmenu # Drivers
+
+menu "Sequencer Options"
+
+config GLOBAL_TEMPO
+    int "global tempo"
+    default 140
+
+config PPQN
+    int "PPQN"
+    default 96
+
+endmenu # Sequencer Options
