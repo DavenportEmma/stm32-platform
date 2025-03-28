@@ -103,7 +103,7 @@ void writeEnable() {
 }
 
 // pass -1 to num_steps to read the entire sequence of steps
-int8_t readSteps(uint32_t addr, uint8_t* data, int8_t num_steps, int8_t max) {
+int8_t readSteps(uint32_t addr, uint8_t* data, int8_t num_steps, int16_t max) {
     while(busy()) {}
 
     CS_low(GPIOA, 4);
