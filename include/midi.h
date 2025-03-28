@@ -3,8 +3,6 @@
 
 #include "stm32f722xx.h"
 
-#define MAX_SEQUENCE_LENGTH 64
-
 typedef enum {
     NOTE_OFF    = 0x80,
     NOTE_ON     = 0x90,
@@ -141,6 +139,13 @@ typedef struct {
 
 typedef struct {
     MIDIStatus_TypeDef status;
+    MIDIChannel_TypeDef channel;
+    MIDIControl_TypeDef control;
+    char value;
+} MIDICC_TypeDef;
+
+typedef struct {
+    MIDIStatus_TypeDef status;
     MIDINote_TypeDef note;
     char velocity;
     char glide;
@@ -154,13 +159,6 @@ typedef struct {
     MIDIChannel_TypeDef channel;
     MIDIStep_TypeDef* steps;
 } MIDISequence_TypeDef;
-
-typedef struct {
-    MIDIStatus_TypeDef status;
-    MIDIChannel_TypeDef channel;
-    MIDIControl_TypeDef control;
-    char value;
-} MIDICC_TypeDef;
 
 int send_midi_note(
     USART_TypeDef* u,
