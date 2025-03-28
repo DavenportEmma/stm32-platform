@@ -58,6 +58,6 @@ void eraseSector(uint32_t addr);
 void eraseBlock(uint32_t addr);
 void eraseChip();
 void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
-void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint8_t len);
+void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint16_t len);
 
 #endif // _W25Q128JV_H
