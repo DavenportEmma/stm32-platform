@@ -44,18 +44,13 @@ step global information
     gate
 */
 
-#define MAX_STEPS 64    // 64 steps per sequence
-
-#define VELOCITY    0
-#define OFFEST      1
-#define GATE        2
 /* 
 every two bytes after these first 3 are status and key bytes for the notes
 note off bytes should always come before note on bytes
 */
 
 void writeEnable();
-void programPage();
-void SPIRead();
+void programPage(uint32_t addr, uint8_t data[], uint8_t len);
+void SPIRead(uint32_t addr, uint8_t data[], uint8_t len);
 
 #endif // _W25Q128JV_H
