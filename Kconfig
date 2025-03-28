@@ -1,0 +1,12 @@
+menu "Drivers"
+
+config UART
+    bool "UART"
+    default n
+
+config MIDI
+    bool "MIDI"
+    default n
+    depends on UART
+
+endmenu
