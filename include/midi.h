@@ -148,7 +148,7 @@ typedef struct {
 } MIDICC_t;
 
 typedef struct {
-    uint16_t counter;
+    uint8_t counter; // this keeps track of the step NOT THE STEP ADDRESS
     MIDIChannel_t channel;
     uint8_t enabled;
 } MIDISequence_t;
