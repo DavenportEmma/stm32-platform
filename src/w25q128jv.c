@@ -2,7 +2,6 @@
 #include "spi.h"
 #include "uart.h"
 #include "w25q128jv.h"
-#include "common.h"
 
 static void compileHeader(uint8_t command, uint32_t addr, uint8_t* header) {
     uint8_t addrB0 = addr & 0xFF;
