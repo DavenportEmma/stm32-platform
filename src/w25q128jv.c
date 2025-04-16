@@ -69,7 +69,7 @@ void eraseChip() {
     CS_high(GPIOA, 4);
 }
 
-void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx,  uint8_t len) {
+void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx,  uint16_t len) {
     while(busy()) {}
     
     writeEnable(); 
