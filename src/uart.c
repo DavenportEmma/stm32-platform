@@ -78,3 +78,11 @@ int send_hex(USART_TypeDef* u, uint8_t value) {
 
     return 0;
 }
+
+void uart_enable_rx_intr(USART_TypeDef* u) {
+    u->CR1 |= USART_CR1_RXNEIE;
+}
+
+void uart_disable_rx_intr(USART_TypeDef* u) {
+    u->CR1 &= ~USART_CR1_RXNEIE;
+}

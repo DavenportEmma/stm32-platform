@@ -23,4 +23,8 @@ int send_uart(USART_TypeDef* u, char* msg, int len);
 
 int send_hex(USART_TypeDef* u, uint8_t value);
 
+void uart_enable_rx_intr(USART_TypeDef* u);
+
+void uart_disable_rx_intr(USART_TypeDef* u);
+
 #endif // _UART_H
