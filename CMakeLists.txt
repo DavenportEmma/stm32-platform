@@ -85,3 +85,15 @@ if(${CONFIG_KEYBOARD})
         ${WORKSPACE_BASE}/platform/src/k_buf.c
     )
 endif()
+
+if(${CONFIG_I2C})
+    list(APPEND DRIVER_SRC
+        ${WORKSPACE_BASE}/platform/src/i2c.c
+    )
+endif()
+
+if(${CONFIG_SSD1306})
+    list(APPEND DRIVER_SRC
+        ${WORKSPACE_BASE}/platform/src/ssd1306.c
+    )
+endif()
