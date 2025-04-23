@@ -88,6 +88,15 @@ depends on KEYBOARD
 
 endmenu # Keyboard Options
 
+config I2C
+    bool "I2C"
+    default n
+
+config SSD1306
+    depends on I2C
+    bool "SSD1306"
+    default n
+
 endmenu # Drivers
 
 menu "Sequencer Options"
