@@ -151,7 +151,7 @@ typedef struct {
     uint8_t counter; // this keeps track of the step NOT THE STEP ADDRESS
     MIDIChannel_t channel;
     uint8_t enabled;
-    uint32_t enabled_steps[2];
+    uint32_t enabled_steps[2];  // 0 = enabled, 1 = disabled
     uint32_t muted_steps[2];
 } MIDISequence_t;
 
