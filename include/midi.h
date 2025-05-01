@@ -1,9 +1,6 @@
 #ifndef _MIDI_H
 #define _MIDI_H
 
-#include "stm32f722xx.h"
-#include "autoconf.h"
-
 #define STEP_END 0x00
 #define SEQ_END 0xFF
 

@@ -1,6 +1,4 @@
-#include "stm32f722xx.h"
 #include "spi.h"
-#include "autoconf.h"
 
 int init_spi(SPI_Handler* s) {
     SPI_TypeDef* spi = s->spi;

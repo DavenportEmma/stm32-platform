@@ -1,9 +1,6 @@
 #ifndef _UART_H
 #define _UART_H
 
-#include "stm32f722xx.h"
-#include "autoconf.h"
-
 #ifndef MAX_PRINT_LENGTH
 #define MAX_PRINT_LENGTH 64
 #endif

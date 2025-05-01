@@ -1,9 +1,6 @@
 #ifndef _SPI_H
 #define _SPI_H
 
-#include "stm32f722xx.h"
-#include "autoconf.h"
-
 typedef struct {
     SPI_TypeDef* spi;
     GPIO_TypeDef* gpio;

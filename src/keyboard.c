@@ -1,5 +1,4 @@
 #include "keyboard.h"
-#include "autoconf.h"
 #include "k_buf.h"
 
 void clear() {
