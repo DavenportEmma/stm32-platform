@@ -1,3 +1,7 @@
+config PLATFORM
+    string "choose the platform for the project"
+    default "stm32f722xx"
+
 config FREERTOS
     bool "Enable FreeRTOS"
     default n
