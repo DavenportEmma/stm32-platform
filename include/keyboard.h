@@ -3,7 +3,7 @@
 
 #include "stm32f722xx.h"
 #include "uart.h"
-#include "k_buf.h"
+
 /*
 shift register control pins
 DIN     PD7 orange
@@ -56,9 +56,18 @@ uint8_t keyMap[CONFIG_ROWS*CONFIG_COLUMNS] = {
     0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A, 0x7B, 0x7C, 0x7D, 0x7E, 0x7F,
 };
 
-void scan(kbuf_handle_t kbuf);
+typedef struct {
+    uint8_t key;
+    uint8_t hold;
+    uint8_t ready;
+} keyboard_t;
+
+typedef keyboard_t* kb_handle_t;
+
+void kb_reset(kb_handle_t kb);
+void scan(kb_handle_t kb);
 void clear();
 void loadBit(int b);
-void readCol(int index, kbuf_handle_t kbuf);
+void readCol(int index, kb_handle_t kb);
 
 #endif
