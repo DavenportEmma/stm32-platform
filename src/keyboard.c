@@ -1,7 +1,7 @@
 #include "keyboard.h"
 
 void kb_reset(kb_handle_t kb) {
-    kb->hold = 0;
+    kb->hold = 0xFFFB;
     kb->key = 0;
     kb->ready = 0;
 }
