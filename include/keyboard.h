@@ -57,8 +57,8 @@ uint8_t keyMap[CONFIG_ROWS*CONFIG_COLUMNS] = {
 };
 
 typedef struct {
-    uint8_t key;
-    uint8_t hold;
+    uint16_t key;
+    uint16_t hold;
     uint8_t ready;
 } keyboard_t;
 
