@@ -1,5 +1,10 @@
 #include "keyboard.h"
-#include "k_buf.h"
+
+void kb_reset(kb_handle_t kb) {
+    kb->hold = 0xFFFB;
+    kb->key = 0;
+    kb->ready = 0;
+}
 
 void clear() {
     GPIOD->ODR &= ~CLR;
@@ -13,7 +18,7 @@ void loadBit(int b) {
     GPIOD->ODR &= ~CLK;
 }
 
-void readCol(int colIndex, kbuf_handle_t kbuf) {
+void readCol(int colIndex, kb_handle_t kb) {
     static uint16_t prevState[CONFIG_COLUMNS] = {0};
 
     // read gpioc input register
@@ -33,11 +38,11 @@ void readCol(int colIndex, kbuf_handle_t kbuf) {
             keyVal = keyMap[colIndex+i*16];
             // if it's a new key press
             if(currentKeyState != prevKeyState) {
-                kbuf_push(kbuf, keyVal);
-                kbuf->ready = 1;
+                kb->key = keyVal;
+                kb->ready = 1;
             // if it's a key hold
             } else {
-                kbuf_push(kbuf, keyVal);
+                kb->hold = keyVal;
             }
         }
     }
@@ -45,14 +50,14 @@ void readCol(int colIndex, kbuf_handle_t kbuf) {
     prevState[colIndex] = d;
 }
 
-void scan(kbuf_handle_t kbuf) {
+void scan(kb_handle_t kb) {
     // load a bit into the shift register
     loadBit(1);
-    readCol(0, kbuf);
+    readCol(0, kb);
     
     for(int i = 1; i < CONFIG_COLUMNS; i++) {
         loadBit(0);
-        readCol(i, kbuf);
+        readCol(i, kb);
     }
 
     clear();
