@@ -83,7 +83,7 @@ void programPage(uint32_t addr, uint8_t* tx, uint8_t* rx,  uint16_t len) {
     CS_high(GPIOA, 4);
 }
 
-void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint16_t len) {
+void SPIRead(uint32_t addr, uint8_t* tx, uint8_t* rx, uint32_t len) {
     while(busy()) {}
     CS_low(GPIOA, 4);
 
