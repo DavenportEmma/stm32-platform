@@ -89,8 +89,6 @@ int send_i2c(uint8_t address, uint8_t* data, uint8_t len) {
     }
 
     for(int i = 0; i < len; i++) {
-        uint32_t timeout_counter = 0;
-        
         while(!(I2C2->ISR & I2C_ISR_TXIS)) {
             if(check_nack_i2c() == 1) {
                 I2C2->CR2 |= I2C_CR2_STOP;
