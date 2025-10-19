@@ -127,7 +127,7 @@ config PACKET_BUFFER_LENGTH
 
 config MAX_POLYPHONY
     int "max number of polyphonic voices per sequence"
-    default 4
+    default 8
 
 config STEPS_PER_SEQUENCE
     int "number of steps per sequence"
