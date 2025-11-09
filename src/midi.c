@@ -7,7 +7,7 @@ int send_midi_note(
     MIDIPacket_t* p
 ) {
     char buffer[3];
-    buffer[0] = p->status | p->channel;
+    buffer[0] = p->status | (p->channel & 0x0F);
     /*
         masking the note with 0x7F because I'm using the msb of the note byte as
         the fifo marker for polyphonic sequences
@@ -23,7 +23,7 @@ int send_midi_control(
     MIDICC_t* p
 ) {
     char buffer[3];
-    buffer[0] = p->status | p->channel;
+    buffer[0] = p->status | (p->channel & 0x0F);
     buffer[1] = p->control;
     buffer[2] = p->value;
 
