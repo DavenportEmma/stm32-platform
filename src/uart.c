@@ -1,4 +1,5 @@
 #include "uart.h"
+#include <stm32f722xx.h>
 
 int init_uart(USART_Handler* u) {
     #ifndef SYS_CLK
@@ -12,19 +13,34 @@ int init_uart(USART_Handler* u) {
         case (unsigned long)USART1:
             RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
             RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
-            RCC->DCKCFGR2 |= (1 << ((1 - 1) * 2));
+            RCC->DCKCFGR2 |= RCC_DCKCFGR2_USART1SEL_0;
             break;
         case (unsigned long)USART3:
             RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
             RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
-            RCC->DCKCFGR2 |= (1 << ((3 - 1) * 2));
+            RCC->DCKCFGR2 |= RCC_DCKCFGR2_USART3SEL_0;
+            break;
+        case (unsigned long)USART2:
+            RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+            RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+            RCC->DCKCFGR2 |= RCC_DCKCFGR2_USART2SEL_0;
+            break;
+        case (unsigned long)UART4:
+            RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+            RCC->APB1ENR |= RCC_APB1ENR_UART4EN;
+            RCC->DCKCFGR2 |= RCC_DCKCFGR2_UART4SEL_0;
+            break;
+        case (unsigned long)USART6:
+            RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
+            RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
+            RCC->DCKCFGR2 |= RCC_DCKCFGR2_USART6SEL_0;
             break;
         default:
             return 1;
     }
 
     // set alternate mode 7 for tx and rx pins
-    gpio->AFR[u->afr_reg] |= (7 << ((u->tx_pin-(8*u->afr_reg))*4)) | (7 << ((u->rx_pin-(8*u->afr_reg))*4));
+    gpio->AFR[u->afr_reg] |= (u->afr_mode << ((u->tx_pin-(8*u->afr_reg))*4)) | (u->afr_mode << ((u->rx_pin-(8*u->afr_reg))*4));
 
     gpio->MODER &= ~(0x3 << (u->tx_pin * 2) | 0x3 << (u->rx_pin * 2));  // Clear mode bits for gpio
     gpio->MODER |= (2 << (u->tx_pin * 2)) | (2 << (u->rx_pin * 2));     // set alternate mode for pin

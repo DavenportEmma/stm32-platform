@@ -12,6 +12,7 @@ typedef struct {
     int rx_pin;
     int afr_reg;
     int rx_interrupts;
+    int afr_mode;
 } USART_Handler;
 
 int init_uart(USART_Handler* u);
