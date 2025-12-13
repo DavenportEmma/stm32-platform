@@ -8,11 +8,7 @@ int send_midi_note(
 ) {
     char buffer[3];
     buffer[0] = p->status | (p->channel & 0x0F);
-    /*
-        masking the note with 0x7F because I'm using the msb of the note byte as
-        the fifo marker for polyphonic sequences
-    */
-    buffer[1] = p->note & 0x7F;
+    buffer[1] = p->note;
     buffer[2] = p->velocity;
 
     return send_uart(u, buffer, 3);
