@@ -12,6 +12,11 @@ typedef enum {
     USART_END_BYTE = 0xF5
 } MIDIStatus_t;
 
+#define PORT_A 0x00
+#define PORT_B 0x10
+#define PORT_C 0x20
+#define PORT_D 0x30
+
 typedef enum {
     PORT_A_CHANNEL_1   = 0x00,
     PORT_A_CHANNEL_2   = 0x01,
