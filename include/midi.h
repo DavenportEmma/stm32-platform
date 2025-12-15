@@ -198,7 +198,6 @@ typedef struct {
 
 typedef struct {
     uint8_t counter; // this keeps track of the step NOT THE STEP ADDRESS
-    // TODO consider consolidating prescale value and counter to reduce memory demands
     int8_t prescale_value;
     int8_t prescale_counter;
     MIDIChannel_t channel;
